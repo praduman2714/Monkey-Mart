@@ -1,0 +1,85 @@
+.mainDiv{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    
+}
+.searchBar{
+    height: 25px;
+    width: 15%;
+    box-shadow: 1px 3px snow;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: rgba(205, 196, 196, 0.256);
+}
+.aside{
+    width: 15%;
+    
+    overflow-y: auto;
+    margin-top: 20vh;
+    
+    margin-left: 1px;
+    
+    
+    
+    
+}
+.aside .filter{
+    overflow: auto;
+    background-color: rgba(128, 128, 128, 0.416);
+    position: fixed;
+    width: 15%;
+    border-radius: 10px;
+    border:  1px solid transparent;
+}
+
+.main{
+    width: 85%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+}
+
+.itemDiv{
+    width: 25%;
+    height: 70vh;
+    /* border: 1px solid pink; */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    margin: 15px;
+
+}
+
+.itemDiv h2{
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.itemDiv button{
+    height: 50px;
+    width: 90%;
+    background-color: rgba(112, 36, 184, 0.534);
+    color: white;
+    font-size: 25px;
+}
+.itemDiv button:hover{
+    height: 45px;
+    cursor: pointer;
+    width: 80%;
+    font-size: 20px;
+    background-color: white;
+    color: rgba(112, 36, 184, 0.534);
+}
+.itemDiv h3{
+    margin-right: 10vw;
+    /* align-items: start; */
+}
+
+.itemDiv img{
+    margin-top: 60px;
+    height: 50%;
+}

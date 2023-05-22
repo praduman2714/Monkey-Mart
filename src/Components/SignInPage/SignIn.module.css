@@ -1,0 +1,27 @@
+.form{
+    margin-top: 20vh;
+}
+
+.form input{
+    padding: 8px;
+    height: 20px;
+    width: 30vw;
+    margin: 5px;
+    border-radius: 30px;
+    border : 1px solid black;
+}
+
+.form button{
+    width: 10vw;
+    margin: 10px;
+    height: 25px;
+    background-color: aquamarine;
+    color: black;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.form button:hover{
+    width: 12vw;
+    height: 30px;
+}
