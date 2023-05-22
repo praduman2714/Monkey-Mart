@@ -1,27 +1,44 @@
-.form{
+/* Define the styles for the form container */
+.form {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
     margin-top: 20vh;
-}
-
-.form input{
-    padding: 8px;
-    height: 20px;
-    width: 30vw;
-    margin: 5px;
-    border-radius: 30px;
-    border : 1px solid black;
-}
-
-.form button{
-    width: 10vw;
-    margin: 10px;
-    height: 25px;
-    background-color: aquamarine;
+    box-shadow: 0px 1px 4px 6px rgb(209, 205, 205);
+  }
+  
+  /* Define the styles for the form title */
+  .form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Define the styles for the form inputs */
+  .form input {
+    width: 95%;
+    padding: 10px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Define the styles for the form button */
+  .form button {
+    width: 95%;
+    padding: 10px;
+    background-color: rgba(21, 207, 207, 0.699);
     color: black;
-    border: 1px solid transparent;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
-}
-
-.form button:hover{
-    width: 12vw;
-    height: 30px;
-}
+  }
+  
+  /* Define the styles for the form button on hover */
+  .form button:hover {
+    background-color: rgba(0, 255, 255, 0.763);
+    /* color: #007bff; */
+  }
+  

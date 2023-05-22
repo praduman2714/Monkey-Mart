@@ -1,16 +1,53 @@
 import Style from './Cart.module.css';
-
+import { useEffect } from 'react';
+import { ref, get } from 'firebase/database';
 import { useValue } from '../../context';
+import { database } from '../../firebaseinit';
 import { Link } from 'react-router-dom';
 
 function Cart(){
-    const {cartItem, cartTotal , addToCart , handleRemove, removeFromCart , purchase} = useValue();
+    const {cartItem, setCartItem, setCartTotal,  cartTotal , addToCart , handleRemove, removeFromCart , purchase} = useValue();
 
-    console.log(cartItem);
-    // let cartTotal = 0;
-    // for(let total of cartItem){
-    //     cartTotal += total.price;
-    // }
+    
+
+    useEffect(() => {
+        const userId = 'user_uid'; // Replace 'user_uid' with the actual UID
+      
+        const cartRef = ref(database, `usersCarts/${userId}/myCart`);
+        const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
+      
+        const fetchCartData = async () => {
+          try {
+            const cartSnapshot = await get(cartRef);
+            const cartTotalSnapshot = await get(cartTotalRef);
+      
+            if (cartSnapshot.exists() && cartTotalSnapshot.exists()) {
+              const cartData = cartSnapshot.val();
+              const cartItemsArray = Object.values(cartData);
+              const cartTotalValue = cartTotalSnapshot.val();
+      
+              setCartItem(cartItemsArray);
+              setCartTotal(cartTotalValue);
+            } else {
+              setCartItem([]);
+              setCartTotal(0);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchCartData();
+      
+        // Cleanup the listener when the component is unmounted
+        return () => {
+          // No cleanup needed for this case
+        };
+    }, []);
+      
+
+      
+
     return (
         <>
             <div className={Style.mainDiv}>

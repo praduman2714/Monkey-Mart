@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword  } from "firebase/auth";
 import { set, ref } from "firebase/database";
 
 import Style from './SignUp.module.css';
-import {auth, database } from "../../firebaseinit";
+import {auth, database} from '../../firebaseinit';
 
 function SignUp() {
   const nameRef = useRef();

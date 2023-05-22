@@ -6,7 +6,7 @@ import Logo from '../../Assests/logo.webp'
 import {  NavLink, Outlet } from 'react-router-dom';
 import { useValue } from '../../context';
 function NavBar(){
-    const {signUp, toggleSignUp} = useValue();
+    const {signUp, toggleSignUp , userPresent , handleLogout} = useValue();
     return (
         <>
             
@@ -20,19 +20,27 @@ function NavBar(){
                             <NavLink className= 'styleLink' to='/'><h3> Home </h3></NavLink>
                         </div>
                         <div> 
+                            {userPresent ? 
                             <NavLink className= 'styleLink' to='order'>
                                 <h3> Order </h3>
-                            </NavLink>
+                            </NavLink> : null}
                         </div>
                         <div> 
+                            {userPresent ? 
                             <NavLink className= 'styleLink' to='cart'>
-                                <h3> Cart </h3>
-                            </NavLink>
+                            <h3> Cart </h3>
+                            </NavLink> : 
+                            null}
                         </div>
                         <div > 
-                        <NavLink className= 'styleLink' to= {signUp ? '/singUp' : 'singIn'}> 
+                            {!userPresent ? 
+                            <NavLink className= 'styleLink' to= {signUp ? '/singUp' : 'singIn'}> 
                             <h3 onClick={toggleSignUp}> {signUp ? 'SingUp' : 'SingIn'}  </h3>
-                        </NavLink> </div>
+                        </NavLink> : 
+                        <NavLink  className='styleLink' to = '/'>
+                            <h3 onClick={handleLogout}>LogOut</h3>
+                        </NavLink>}
+                        </div>
                     </div>
                 </div>
                 <Outlet />
