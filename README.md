@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Monkey Mart
 
-Monkey Mart is an e-commerce platform built with [React](https://reactjs.org/) and [Node.js](https://nodejs.org/). It allows users to browse and purchase a variety of products online.
+Monkey Mart is an e-commerce platform built with [React](https://reactjs.org/) . It allows users to browse and purchase a variety of products online.
 
 ## Features
 
