@@ -1,14 +1,21 @@
+// importing Style
 import Style from './Cart.module.css';
+// importing Hooks
 import { useEffect } from 'react';
+// Importing dependencies for Firebase Database CRUD opetaion
 import { ref, get } from 'firebase/database';
 import { useValue } from '../../context';
-import { database } from '../../firebaseinit';
+import { database , auth} from '../../firebaseinit';
+
+// importing Link tag from react-router-dom
 import { Link } from 'react-router-dom';
 
 // Importing Spinner
-import Spinner from "react-spinner-material";
+import Loader from '../Loader/Loader';
+import { toast } from 'react-toastify';
 
 function Cart(){
+
     const {cartItem,
        setCartItem,
         setCartTotal,  
@@ -17,17 +24,20 @@ function Cart(){
         handleRemove,
         removeFromCart ,
         purchase, 
-        isLoading} = useValue();
+        isLoading,
+        setIsLoading} = useValue();
 
-    
+    // Fetching data from Database on Cart Monunt
 
     useEffect(() => {
-        const userId = 'user_uid'; // Replace 'user_uid' with the actual UID
+        
+      const userId = auth.currentUser.uid; // current UserID
       
         const cartRef = ref(database, `usersCarts/${userId}/myCart`);
         const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
       
         const fetchCartData = async () => {
+          setIsLoading(true);
           try {
             const cartSnapshot = await get(cartRef);
             const cartTotalSnapshot = await get(cartTotalRef);
@@ -44,9 +54,13 @@ function Cart(){
               setCartTotal(0);
             }
           } catch (error) {
-            console.error(error);
+            toast.error('Error ! ');
+            // console.error(error);
           }
+          setIsLoading(false);
         };
+
+        
       
         fetchCartData();
 
@@ -59,14 +73,20 @@ function Cart(){
     }, []);
 
     
-      
-    // console.log(cartItem);
-    
-    
+    // for displyng the Loader
+    if(isLoading){
+      return <Loader />
+    }
 
+      // For displing if there in no element in Cart
+    if(!isLoading && cartItem.length === 0){
+      return <h1>No Item In Cart ! </h1>
+    }
+    
+    // REndering UI
     return (
         <>
-          {isLoading && <Spinner radius={120} color={"#333"} stroke={2} visible={true} />}
+          {isLoading && <Loader /> }
             <div className={Style.mainDiv}>
                 {/* <input className={Style.searchBar} type='text' placeholder='Search' /> <br /> */}
                 <div className={Style.aside}>

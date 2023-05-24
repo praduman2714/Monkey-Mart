@@ -1,4 +1,7 @@
+// Importing the dependience from hook
 import {  createContext, useState , useContext, useEffect } from "react";
+
+// Importing Database
 import { onAuthStateChanged , signOut} from 'firebase/auth';
 import { ref, push, set , get , remove } from 'firebase/database';
 
@@ -9,6 +12,7 @@ import { toast } from "react-toastify";
 
 const contextApi = createContext();
 
+// This function will send all the value of contextApi;
 export function useValue() {
     const value = useContext(contextApi);
     return value;
@@ -16,6 +20,7 @@ export function useValue() {
 
 function CustomeContex({children}){
 
+    // assigning the state, to be used for the purpose
     const [signUp , setSignUp] = useState(true);
     const [cartItem, setCartItem] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +29,7 @@ function CustomeContex({children}){
     const [orderTotal, setOrderTotal] = useState(0);
     const [userPresent , setUserPresent] = useState(false);
 
+    // Used for checking if the user is there or not.
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
@@ -44,7 +50,7 @@ function CustomeContex({children}){
       }, []);
 
       
-
+      // this functon is used for logOut the existing user
       const handleLogout = () => {
         signOut(auth)
           .then(() => {
@@ -59,16 +65,17 @@ function CustomeContex({children}){
           });
       };
     
-
+      // this fucntin used for taking the user from signUp page to Sign In page
     const toggleSignUp = ()=> {
         // console.log("Clicked");
         setSignUp(!signUp);
     }
 
+    // Wheren the user click on the purchaase , this function will be intitiated
     async function purchase() {
       try {
-        const userId = 'user_uid'; // Replace 'user_uid' with the actual UID
-    
+        const userId = auth.currentUser.uid; // current UserID
+        // Accesing all the data from database
         const ordersRef = ref(database, `userOrders/${userId}/orders`);
         const orderRef = ref(database, `userOrders/${userId}/order`);
         const cartRef = ref(database, `usersCarts/${userId}/myCart`);
@@ -119,18 +126,16 @@ function CustomeContex({children}){
           toast.success('Order Placed!');
         }
       } catch (error) {
-        console.error('Error during purchase:', error);
+        // console.error('Error during purchase:', error);
       }
     }
     
-    
-    
-
+    // this functino is used to add item to cart
     async function addToCart(item) {
         try {
           setIsLoading(true);
           // Get the UID of the logged-in user
-          const userId = 'user_uid'; // Replace 'user_uid' with the actual UID
+          const userId = auth.currentUser.uid; // current UserID
       
           // Check if the item with the same title already exists in the user's cart
           const cartRef = ref(database, `usersCarts/${userId}/myCart`);
@@ -234,7 +239,7 @@ function CustomeContex({children}){
           }
       
           // Item added to cart successfully
-          console.log('Item added to cart:', item);
+          // console.log('Item added to cart:', item);
 
           
           setIsLoading(false);
@@ -244,11 +249,11 @@ function CustomeContex({children}){
         }
     }
       
-      
+    // For removing the element from the cart
 
     async function removeFromCart(item) {
         try {
-          const userId = 'user_uid'; // Replace 'user_uid' with the actual UID
+          const userId = auth.currentUser.uid; // current UserID
           const cartItemId = item.id; // Assuming the item object has an 'id' property
       
           const cartItemRef = ref(database, `usersCarts/${userId}/myCart/${cartItemId}`);
@@ -272,17 +277,12 @@ function CustomeContex({children}){
         }
     }
        
-      
-      
-
-    // useEffect(()=>{
-    //     removeFromCart();
-    // }, [cartItem]);
+    //  For decresing the count of the items
 
     async function handleRemove(item) {
       try {
-        const userId = 'user_uid';
-        console.log(userId);
+        const userId = auth.currentUser.uid; // current UserID
+        // console.log(userId);
     
         const cartRef = ref(database, `usersCarts/${userId}/myCart`);
         const snapshot = await get(cartRef);
@@ -336,10 +336,6 @@ function CustomeContex({children}){
     }
     
     
-      
-
-      
-
     return (
         <>
             <contextApi.Provider value={{signUp , toggleSignUp, cartItem, addToCart , isLoading , cartTotal

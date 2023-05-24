@@ -28,7 +28,7 @@
     
     
 }
-.aside .filter{
+aside .filter{
     overflow: auto;
     background-color: rgba(128, 128, 128, 0.416);
     position: fixed;
@@ -37,10 +37,60 @@
     border:  1px solid transparent;
 }
 
+.form {
+    margin: auto;
+    width: 25%;
+  }
+  
+  .priceRange {
+    transform: scale(1);
+    cursor: pointer;
+    height: 6px;
+    width: 90%;
+    background-color: rgb(112, 100, 229);
+    border-radius: 4px;
+  }
+  
+  .filterContainer {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    left: 0;
+    top: 30%;
+    width: 14rem;
+    padding: 1rem;
+    text-align: center;
+    background: #f0f0fc;
+    border-radius: 10px;
+  }
+  
+  .categoryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  [type="checkbox"] {
+    border-radius: 0.25rem;
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  div h2 {
+    font-size: 1.25em;
+    color: #224957;
+    font-weight: bold;
+  }
+  
+
 .main{
     width: 85%;
     /* height: 100%; */
     display: flex;
+    margin-left: 20%;
     flex-direction: row;
     flex: 1;
     flex-wrap: wrap;
@@ -64,7 +114,7 @@
 .itemDiv button{
     height: 50px;
     width: 90%;
-    background-color: rgba(112, 36, 184, 0.534);
+    background-color: rgba(13, 142, 234, 0.74);
     color: white;
     font-size: 25px;
 }

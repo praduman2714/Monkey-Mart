@@ -4,6 +4,7 @@ import './App.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// Importing all the Components.
 import SignUp from './Components/SignUpPage/SignUp';
 import NavBar  from './Components/NavBar/NavBar';
 import SingIn from './Components/SignInPage/SingIn';
@@ -19,6 +20,7 @@ import Cart from './Components/Cart/Cart';
 
 
 function App() {
+  // Assigning the routes to the all the components
   const router = createBrowserRouter([
     {path : '/' , element : <NavBar />, children : [
       {path : '/' , element: <Home />},

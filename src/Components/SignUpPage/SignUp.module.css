@@ -6,7 +6,7 @@
     background-color: #f5f5f5;
     border-radius: 5px;
     margin-top: 20vh;
-    box-shadow: 0px 1px 4px 6px rgb(209, 205, 205);
+    box-shadow: 0px 1px 2px 6px rgb(209, 205, 205);
   }
   
   /* Define the styles for the form title */
@@ -29,7 +29,8 @@
   .form button {
     width: 95%;
     padding: 10px;
-    background-color: rgba(21, 207, 207, 0.699);
+    font-size: 20px;
+    background-color: rgba(13, 142, 234, 0.598);
     color: black;
     border: none;
     border-radius: 3px;

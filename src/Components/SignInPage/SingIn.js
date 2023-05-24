@@ -3,8 +3,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 import Style from './SignIn.module.css';
 import { auth } from "../../firebaseinit";
+import { Link } from 'react-router-dom';
+import { useValue } from '../../context';
 
 function SignIn() {
+  const {toggleSignUp} = useValue();
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -44,7 +47,11 @@ function SignIn() {
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" ref={emailRef} /> <br />
           <input type="password" placeholder="Password" ref={passwordRef} /> <br />
+          
           <button type="submit">Sign In</button>
+          <div className={Style.Link} >
+          <Link  onClick={toggleSignUp} to = '/singUp'>Register User</Link> 
+          </div>
         </form>
       </div>
     </>

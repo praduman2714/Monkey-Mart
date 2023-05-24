@@ -4,6 +4,7 @@ import { set, ref } from "firebase/database";
 
 import Style from './SignUp.module.css';
 import {auth, database} from '../../firebaseinit';
+import { toast } from 'react-toastify';
 
 function SignUp() {
   const nameRef = useRef();
@@ -35,7 +36,9 @@ function SignUp() {
 
       // Clear the input fields after successful signup
       handleClear();
-
+      toast.success('User Signed Up !');
+      // Sign-in successful, redirect to home page
+      window.location.href = '/';
       console.log("User signed up:", user);
     } catch (error) {
       const errorCode = error.code;
@@ -53,7 +56,7 @@ function SignUp() {
           <input type="text" placeholder="Name" ref={nameRef} /> <br />
           <input type="email" placeholder="Email" ref={emailRef} /> <br />
           <input type="password" placeholder="Password" ref={passwordRef} /> <br />
-          <button type="submit">Sign Up</button>
+          <button  type="submit">Sign Up</button>
         </form>
       </div>
       
