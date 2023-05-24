@@ -1,13 +1,33 @@
 import Style from './Home.module.css';
 
-import Data from '../../data';
+
+
+import data from '../../data';
 import { useValue } from '../../context';
+import { NavLink } from 'react-router-dom';
+import { useRef, useState } from 'react';
+
+
 function Home(){
-    const {addToCart , isLoading} = useValue();
+    const {addToCart , isLoading, setIsLoading} = useValue();
+    const searchRef = useRef();
+    const [Data, setData] = useState(data);
+
+    function handleSearch(event) {
+        const searchString = event.target.value.toLowerCase();
+        const newArray = data.filter(item => item.title.toLowerCase().startsWith(searchString));
+        setData(newArray);
+    }
+      
+      
+      
+      
     return (
         <>
+            <input onChange={handleSearch} className={Style.searchBar} type='text' placeholder='Search' ref={searchRef} /> <br />
             <div className={Style.mainDiv}>
-                {/* <input className={Style.searchBar} type='text' placeholder='Search' /> <br /> */}
+               
+               
                 <div className={Style.aside}>
                     <div className={Style.filter}>
                         <h4>Filter</h4>
@@ -68,9 +88,11 @@ function Home(){
                             <img src = {item.img} alt='Images' />
                             <h2>{item.title}</h2>
                             <h3>{item.price}</h3>
-                            <button onClick={() => addToCart(item)}>
-                                {isLoading ? 'Adding' : 'Add To Cart'}
-                            </button>
+                            <NavLink >
+                                <button  onClick={() => addToCart(item)}>
+                                    {isLoading ? 'Adding' : 'Add To Cart'}
+                                </button>
+                            </NavLink>
                           </div>
                         </>
                     ))}

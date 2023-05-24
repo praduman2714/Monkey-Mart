@@ -5,8 +5,19 @@ import { useValue } from '../../context';
 import { database } from '../../firebaseinit';
 import { Link } from 'react-router-dom';
 
+// Importing Spinner
+import Spinner from "react-spinner-material";
+
 function Cart(){
-    const {cartItem, setCartItem, setCartTotal,  cartTotal , addToCart , handleRemove, removeFromCart , purchase} = useValue();
+    const {cartItem,
+       setCartItem,
+        setCartTotal,  
+        cartTotal , 
+        addToCart , 
+        handleRemove,
+        removeFromCart ,
+        purchase, 
+        isLoading} = useValue();
 
     
 
@@ -38,18 +49,24 @@ function Cart(){
         };
       
         fetchCartData();
+
+       
       
         // Cleanup the listener when the component is unmounted
         return () => {
           // No cleanup needed for this case
         };
     }, []);
-      
 
+    
       
+    // console.log(cartItem);
+    
+    
 
     return (
         <>
+          {isLoading && <Spinner radius={120} color={"#333"} stroke={2} visible={true} />}
             <div className={Style.mainDiv}>
                 {/* <input className={Style.searchBar} type='text' placeholder='Search' /> <br /> */}
                 <div className={Style.aside}>

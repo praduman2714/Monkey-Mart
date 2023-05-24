@@ -1,4 +1,9 @@
 import './App.css';
+
+// React Toast for showing the notification
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import SignUp from './Components/SignUpPage/SignUp';
 import NavBar  from './Components/NavBar/NavBar';
 import SingIn from './Components/SignInPage/SingIn';
@@ -25,7 +30,9 @@ function App() {
     ]}
   ])
   return (
+   
     <CustomeContex>
+       <ToastContainer />
       <div className="App">
       
       
