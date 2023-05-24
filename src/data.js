@@ -42,7 +42,7 @@ const data = [
     {
         id: 2,
         img : 'https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1662130112_1367320.jpg?w=480&dpr=1.3',
-        title : 'The Roadster Style Company Sweater',
+        title : 'The Roadster Style Company',
         category : 'Men',
         price : 4000,
         value : 'Add To Cart'
