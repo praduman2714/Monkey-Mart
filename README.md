@@ -1,6 +1,21 @@
+Deployed : https://monkey-mart.netlify.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Monkey Mart
+
+Monkey Mart is an e-commerce platform built with [React](https://reactjs.org/) . It allows users to browse and purchase a variety of products online.
+
+## Features
+
+- User authentication (signup, login, logout)
+- Product listing and browsing
+- Shopping cart functionality
+- Order placement and tracking
+- User profile management
+- Admin panel for managing products, orders, and users
 
 ## Available Scripts
 
@@ -68,3 +83,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+

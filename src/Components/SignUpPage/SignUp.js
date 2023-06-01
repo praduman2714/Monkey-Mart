@@ -5,11 +5,14 @@ import { set, ref } from "firebase/database";
 import Style from './SignUp.module.css';
 import {auth, database} from '../../firebaseinit';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 function SignUp() {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const[error , setError] = useState(null);
+  const [loading, setIsLoading] = useState(false)
 
   function handleClear() {
     nameRef.current.value = "";
@@ -25,6 +28,7 @@ function SignUp() {
     const password = passwordRef.current.value;
 
     try {
+      setIsLoading(true);
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
@@ -43,8 +47,10 @@ function SignUp() {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      setError(error);
       console.error("Error signing up:", errorCode, errorMessage);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -56,7 +62,8 @@ function SignUp() {
           <input type="text" placeholder="Name" ref={nameRef} /> <br />
           <input type="email" placeholder="Email" ref={emailRef} /> <br />
           <input type="password" placeholder="Password" ref={passwordRef} /> <br />
-          <button  type="submit">Sign Up</button>
+          <button  type="submit">{loading ? '>> Loading' : 'Sign Up'}</button>
+          {error ? <p>{error.message}</p> : null}
         </form>
       </div>
       

@@ -5,11 +5,14 @@ import Style from './SignIn.module.css';
 import { auth } from "../../firebaseinit";
 import { Link } from 'react-router-dom';
 import { useValue } from '../../context';
+import { useState } from 'react';
 
 function SignIn() {
   const {toggleSignUp} = useValue();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Check if the user is already signed in
@@ -30,14 +33,17 @@ function SignIn() {
     const password = passwordRef.current.value;
 
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       // Sign-in successful, redirect to home page
       window.location.href = '/';
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      setError(error);
       console.error("Error signing in:", errorCode, errorMessage);
     }
+    setLoading(false);
   };
 
   return (
@@ -48,7 +54,8 @@ function SignIn() {
           <input type="email" placeholder="Email" ref={emailRef} /> <br />
           <input type="password" placeholder="Password" ref={passwordRef} /> <br />
           
-          <button type="submit">Sign In</button>
+          <button type="submit">{loading ? '>> Loading' : 'Sign In'}</button> <br />
+          {error ? <p>{error.message}</p> : null}
           <div className={Style.Link} >
           <Link  onClick={toggleSignUp} to = '/singUp'>Register User</Link> 
           </div>
